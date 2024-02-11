@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 import requests
+from dotenv import load_dotenv
 
 # response = requests.get('https://api.github.com')
 # print(response)
@@ -26,8 +27,9 @@ import requests
 # with open('data.json', 'w') as f:
 #     json.dump(data, f)
 
+load_dotenv()
 
-API_KEY = 'yNVjm1gxJV6KKGEgzFDyYTMxdSmomCfy'
+API_KEY = os.getenv("API_KEY_ENV", "Default-Value")
 CURRENCY_RATE_FILE = 'currency_rates.json'
 
 
