@@ -1,7 +1,8 @@
+import os
+
 import requests
 import json
 from datetime import datetime
-
 
 # response = requests.get('https://api.github.com')
 # print(response)
@@ -25,6 +26,11 @@ from datetime import datetime
 # with open('data.json', 'w') as f:
 #     json.dump(data, f)
 
+
+API_KEY = 'yNVjm1gxJV6KKGEgzFDyYTMxdSmomCfy'
+CURRENCY_RATE_FILE = 'currency_rates.json'
+
+
 def main():
     while True:
         currency = input('Введите название валюты (USD или EUR)')
@@ -33,7 +39,7 @@ def main():
             continue
 
         rate = get_currency_rate(currency)
-        timestamp = datetime.now()
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         print(f'Курс {currency} к рублю: {rate}')
         data = {'currency': currency, 'rate': rate, 'timestamp': timestamp}
@@ -47,12 +53,27 @@ def main():
         else:
             print('Нет такого действия')
 
-def get_currency_rate(base):
-    pass
+
+def get_currency_rate(base: str) -> float:
+    """Получает курс от API и возвращает его в виде float"""
+
+    url = "https://api.apilayer.com/exchangerates_data/latest"
+    response = requests.get(url, headers={'apikey': API_KEY}, params={'base': base})
+    rate = response.json()['rates']['RUB']
+    return rate
 
 
-def save_to_json(data):
-    pass
+def save_to_json(data: dict) -> None:
+    """Сохраняет данные в JSON файл"""
+    with open(CURRENCY_RATE_FILE, 'a') as f:
+        if os.stat(CURRENCY_RATE_FILE).st_size == 0:
+            json.dump([data], f)
+        else:
+            with open(CURRENCY_RATE_FILE) as f:
+                data_list = json.load(f)
+                data_list.append(data)
+            with open(CURRENCY_RATE_FILE, 'w') as f:
+                json.dump(data_list, f)
 
 
 if __name__ == '__main__':
