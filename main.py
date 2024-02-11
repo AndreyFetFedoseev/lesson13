@@ -1,8 +1,8 @@
+import json
 import os
+from datetime import datetime
 
 import requests
-import json
-from datetime import datetime
 
 # response = requests.get('https://api.github.com')
 # print(response)
@@ -33,7 +33,7 @@ CURRENCY_RATE_FILE = 'currency_rates.json'
 
 def main():
     while True:
-        currency = input('Введите название валюты (USD или EUR)')
+        currency = input('Введите название валюты (USD или EUR)').upper()
         if currency not in ('USD', 'EUR'):
             print('Некорректный ввод')
             continue
