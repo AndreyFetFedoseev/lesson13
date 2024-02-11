@@ -13,5 +13,20 @@
     "currency": "EUR",
     "rate": 98.554863,
     "timestamp": "2024-02-11 14:26:54"
+  },
+  {
+    "currency": "USD",
+    "rate": 91.385038,
+    "timestamp": "2024-02-11 20:32:47"
+  },
+  {
+    "currency": "EUR",
+    "rate": 98.554863,
+    "timestamp": "2024-02-11 20:33:02"
+  },
+  {
+    "currency": "USD",
+    "rate": 91.385038,
+    "timestamp": "2024-02-11 20:33:32"
   }
 ]
