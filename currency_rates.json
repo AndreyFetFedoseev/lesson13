@@ -28,5 +28,10 @@
     "currency": "USD",
     "rate": 91.385038,
     "timestamp": "2024-02-11 20:33:32"
+  },
+  {
+    "currency": "USD",
+    "rate": 92.535038,
+    "timestamp": "2024-03-16 19:42:00"
   }
 ]
